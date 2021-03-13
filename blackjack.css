@@ -1,0 +1,210 @@
+@font-face{
+	font-family: "chunk five";
+
+	src: url("fonts/ChunkFive-Regular.otf") format("opentype");
+	font-weight: 300;
+}
+
+
+
+			body{
+				overflow-x: hidden;
+				overflow-y: hidden;
+				
+				font-family: chunk five, sans-serif;
+				font-weight: 200;
+				font-size: 18px;
+				letter-spacing: 1px;
+				margin: 0;
+				padding: 0;
+				color: white;
+				background-image: url('images/dark.jpg');
+				background-size: 100%;
+				
+				
+				
+
+			}
+
+			button{
+				background-color: orange;
+				color: white;
+				font-family: chunk five;
+				border: none;
+			}
+			
+
+			#deck-banque{
+				margin-top: 20px;
+				margin-left: 100px;
+				
+				display: grid;
+				grid-template-rows: 1fr;
+				grid-template-columns: repeat(6, 1fr);
+				grid-column-gap: 20px;
+				width: 100%;
+				height: 300px;
+				
+				top:50px;
+				
+
+			}
+
+			#deck-vous{
+				margin-top: 35px;
+				margin-left: 100px;
+				
+				display: grid;
+				grid-template-rows: 1fr;
+				grid-template-columns: repeat(6, 1fr);
+				grid-column-gap: 20px;
+				width: 100%;
+				height: 200px;
+			
+
+			}
+
+			#span-banque{
+				position: absolute;
+				top: 230px;
+				left: 150px;
+			}
+
+			#player{
+				position: relative;
+				bottom: 10px;
+			}
+
+			#span-vous{
+				margin-left: 70px;
+			}
+
+			.carte{
+				animation-name: pop;
+				animation-duration: .3s;
+			}
+
+			#actions{
+				width: 80%;
+				
+				position: relative;
+				
+				display: grid;
+				grid-template-rows: 30px;
+				grid-column-gap: 10px;
+				grid-template-columns: 25% 15% 15% 20% 5% 5% 15%; 
+
+			}
+			
+			#terminer{
+				grid-column: 3/4;
+			}
+
+			#restart{
+				grid-column: 3/4;
+			}
+
+			#ask{
+				grid-column: 2/3;
+			}
+
+			
+
+			#reserve-vous{
+				margin: 0;
+				grid-column: 4/5;
+			}
+
+			#misermoins{
+				grid-column: 5/6;
+			}
+
+			#miserplus{
+				grid-column: 6/7;
+			}
+
+			
+
+
+			#mise{
+				grid-column: 7/8;
+			}
+
+			#valider{
+				grid-column: 8/9;
+			}
+
+
+	
+			.carte-banque, .carte-vous{
+				height: 200px;
+				
+	
+			}
+
+			
+
+			#mort{
+				position: absolute;
+				bottom: 250px;
+				left: 70px;
+			}
+
+			#blackjack{
+				position: absolute;
+				bottom: 205px;
+				left: 70px;
+			}
+
+			#reveal-result{
+				position: absolute;
+				top: 250px;
+				left: 150px;
+			}
+
+			#regles{
+				position: absolute;
+				top: 210px;
+				z-index: 10;
+				background-color: rgba(0,0,0,0.8);
+				display: none;
+				
+				font-family: arial;
+				font-weight: bold;
+				padding-left: 30px;
+				
+			}
+
+			#regles h4{
+				text-decoration: underline;
+			}
+
+			@keyframes pop{
+				0%{
+					transform: scale(1.4);
+					
+				}
+
+				100%{
+					transform: scale(1);
+
+				}
+			}
+
+			@keyframes fadein { 
+		    from {
+		        opacity:0;
+		    }
+		    to {
+		        opacity: 1;
+		    }
+		}
+
+		@keyframes fadeout { 
+		    from {
+		        opacity:1;
+		    }
+		    to {
+		        opacity: 0;
+		    }
+		}

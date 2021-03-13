@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<title>BlackJack</title>
+	<link rel="stylesheet" type="text/css" href="blackjack.css">
+	<script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
+	<script src="https://unpkg.com/vue@next"></script>
+
+</head>
+<body>
+
+	
+	<div id="content">
+		<button id="infos" style="width: 60px; height: 30px; position: absolute; right: 20px">Règles</button>
+		
+		<div id="regles">
+			<h4>Règles du jeu</h4>
+			<p>Le but du jeu est, en piochant des cartes, de s'approcher le plus possible de 21 points sans dépasser. Les cartes valent leur valeur, les têtes valent 10 points et l'as vaut soit 1, soit 11, suivant ce qui vous arrange.
+       Avant de pouvoir voir vos deux premières cartes, il faut que vous misiez au moins 10 jetons.
+       Une fois que vous décidez de terminer vos actions, c'est à la banque de jouer. Elle va alors dévoiler ses deux cartes cachées. Si son nombre de points est inférieur à 17, elle va piocher des cartes jusqu'à atteindre cette valeur. 
+       Pour gagner, il faut être plus proche de 21 que la banque, sans bien sûr avoir dépassé cette valeur. Vous faites alors un bénéfice de la valeur de votre mise. En cas de défaite, vous perdez vos jetons.
+     </p>
+   </div>
+   <span v-if="revealBanque==true" id="span-banque">La banque : {{scoreBanque}}</span>
+   <div id="deck-banque">
+     <img v-if="revealBanque==false" src="images/hidden-card.png" class="carte carte-banque" v-for="carte in cartesBanque">
+     <img v-bind:src="carte.image" v-else="revealBanque==true"  class="carte carte-banque" v-for="carte in cartesBanque" >
+   </div>
+
+   <h3 v-if="revealResult" id="reveal-result">{{resultat}}</h3>
+
+   <div id="player">
+
+
+
+
+     <p id="mort" v-if="flag==true&&scoreVous>=22">Vous avez perdu ! </p>
+     <p id="blackjack" v-if="flag==true&&scoreVous==21">BlackJack !</p>
+
+     <div id="actions">
+
+      <span v-if="revealVous==true" id="span-vous">Vous : {{scoreVous}}</span>
+
+      <button id="ask" v-if="scoreVous<21&&revealVous==true&&revealBanque==false"v-on:click="piocher">Demander une carte</button>
+      <button id="restart" v-if="revealResult==true || scoreVous>21" v-on:click="recommencer">Nouvelle manche</button>
+      <button id="terminer" v-if="revealVous==true&&revealBanque==false&&scoreVous<22" v-on:click="terminer">Terminer mon tour</button>
+
+      <p id="reserve-vous">Jetons restants: {{reserveVous}}</p>
+
+      <button id="misermoins" v-if="mise>=1" v-on:click="mise-=10">-</button>
+      <button id="miserplus" v-if="mise<reserveVous" v-on:click="mise+=10">+</button>
+
+      <strong id="mise" v-if="scoreVous>=22">Votre mise : 0</strong>
+      <strong id="mise" v-else>Votre mise : {{mise}}</strong>
+      <button id="valider" v-if="mise>=1&&revealVous==false" v-on:click="valideMise">Valider</button>
+
+    </div>
+
+
+
+    <div id="deck-vous" >
+
+
+      <!-- <div class="carte carte-vous" v-for="carte in cartesVous">{{carte.nom}}</div> -->
+      <img v-if="revealVous==false" src="images/hidden-card.png" class="carte carte-vous" v-for="carte in cartesVous">
+      <img v-bind:src="carte.image" v-else="revealVous==true"  class="carte carte-vous" v-for="carte in cartesVous">
+
+
+    </div>
+  </div>
+</div> 
+<!-- fin div content -->
+
+<script src="js/app.js"></script>
+</body>
+</html>
+
